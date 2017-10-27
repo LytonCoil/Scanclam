@@ -1,0 +1,13 @@
+#!/bin/bash
+echo -e "Please enter the scan number: "
+read number
+echo "The scan started at:" >>~/logs/scan_log && date >>~/logs/scan_log
+echo "Scanning the home directory..." 
+echo "Home scan: " >~/ClamReports/ClamReport$number
+sudo clamscan -r -i --remove /home >>~/ClamReports/ClamReport$number
+echo "Scanning the opt directory... "
+echo "Opt scan: " >>~/ClamReports/ClamReport$number
+sudo clamscan -r -i --remove /opt >>~/ClamReports/ClamReport$number
+echo "The scan finished at:">>~/logs/scan_log && date >>~/logs/scan_log
+read -p " The scan is complete."
+#Please note that you must create a logs directory in your home directory and put a file named scan_log in it, as well as create a directory named ClamReports in your home directory. 
